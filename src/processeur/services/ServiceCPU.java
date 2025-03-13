@@ -18,17 +18,21 @@ public class ServiceCPU {
      * Constantes indiquant le nombre maximum de CPUs que peut contenir notre liste.
      */
     // VOTRE CODE ICI...
+    public static final int NBRE_CPU = 16;
 
     /**
      * Attribut contenant le tableau des CPUs.
      */
     // VOTRE CODE ICI...
+    private CPU[] cpus;
 
     /**
      * Attribut contenant la référence au contrôleur de l'application MVC
      * "Processeur".
      */
     // VOTRE CODE ICI...
+    private int index;
+    private Controller refCtrl;
 
     /**
      * Constructeur de la classe ServiceCPU. Les attributs de la classe ServiceCPU
@@ -36,6 +40,8 @@ public class ServiceCPU {
      */
     public ServiceCPU() {
         // VOTRE CODE ICI...
+        this.cpus = new CPU[NBRE_CPU];
+        this.index = 0;
     }
 
     /**
@@ -49,6 +55,11 @@ public class ServiceCPU {
      */
     public boolean ajouterUnNouveau(CPU cpu) {
         // VOTRE CODE ICI...
+        if (index < NBRE_CPU) {
+            cpus[index++] = cpu;
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -58,6 +69,7 @@ public class ServiceCPU {
      */
     public CPU[] obtenirLaListe() {
         // VOTRE CODE ICI...
+        return cpus;
     }
 
     /**
@@ -68,6 +80,7 @@ public class ServiceCPU {
      */
     public int nombreDeCPUDansLaListe() {
         // VOTRE CODE ICI...
+        return index;
     }
 
     /**
@@ -79,6 +92,7 @@ public class ServiceCPU {
      */
     public int tailleDeLaListe() {
         // VOTRE CODE ICI...
+        return NBRE_CPU;
     }
 
     /**
@@ -91,6 +105,10 @@ public class ServiceCPU {
      */
     public CPU obtenirUnElement(int indice) {
         // VOTRE CODE ICI...
+        if (indice >= 0 && indice < index) {
+            return cpus[indice];
+        }
+        return null;
     }
 
     /**
@@ -100,6 +118,7 @@ public class ServiceCPU {
      */
     public Controller getRefCtrl() {
         // VOTRE CODE ICI...
+        return refCtrl;
     }
 
     /**
@@ -109,6 +128,7 @@ public class ServiceCPU {
      */
     public void setRefCtrl(Controller refCtrl) {
         // VOTRE CODE ICI...
+        this.refCtrl = refCtrl;
     }
 
 }
